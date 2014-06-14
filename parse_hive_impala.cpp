@@ -7,7 +7,7 @@
 //		<query_id>
 
 
-
+#include <cstdlib>
 #include <iostream>
 #include <fstream>
 #include <string>
