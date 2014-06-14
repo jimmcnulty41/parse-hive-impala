@@ -94,7 +94,7 @@ void output_speed_to_file(const string& file_name, const string& speed,
 						  const string &query_engine, const string &benchmark_size, 
 						  const string &query_id){
 	ofstream out_file;
-	out_file.open(file_name, ios::app);
+	out_file.open(file_name.c_str(), ios::app);
 	if (!out_file){
 		cerr << "Error with out_file\n";
 		exit(2);
