@@ -5,7 +5,7 @@
 //		<query engine (hive, impala, shark, etc.)>
 //		<benchmark size>
 //		<query_id>
-
+//		<result_set_size>
 
 #include <cstdlib>
 #include <iostream>
@@ -22,10 +22,10 @@ string get_speed_hive(const string & file_contents);
 string get_speed_impala(const string & file_contents);
 void output_speed_to_file(const string& file_name, const string& speed,
 	const string &query_engine, const string &benchmark_size,
-	const string &query_id);
+	const string &query_id, const string &result_size);
 
 int main(int argc, char* argv[]){
-	if (argc < 5){
+	if (argc < 6){
 		cerr << "Not enough arguments\n";
 		exit(1);
 	}
@@ -48,7 +48,7 @@ int main(int argc, char* argv[]){
 	}
 
 	//	Output to file
-	output_speed_to_file("benchmarks_results.txt", results, argv[2], argv[3], argv[4]);
+	output_speed_to_file("benchmarks_results.txt", results, argv[2], argv[3], argv[4], argv[5]);
 }
 
 string get_file_contents(const char* file_name){
@@ -92,7 +92,7 @@ string get_speed_impala(const string &file_contents){
 
 void output_speed_to_file(const string& file_name, const string& speed, 
 						  const string &query_engine, const string &benchmark_size, 
-						  const string &query_id){
+						  const string &query_id, const string &result_size){
 	ofstream out_file;
 	out_file.open(file_name.c_str(), ios::app);
 	if (!out_file){
@@ -100,6 +100,6 @@ void output_speed_to_file(const string& file_name, const string& speed,
 		exit(2);
 	}
 	out_file << speed << "," << query_engine << "," << benchmark_size << ","
-		<< query_id << endl;
+		<< query_id << "," << result_size << endl;
 	out_file.close();
 }
