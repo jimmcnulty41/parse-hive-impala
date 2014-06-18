@@ -25,7 +25,8 @@ void output_speed_to_file(const string& file_name, const string& speed,
 
 int main(int argc, char* argv[]){
 	if (argc < 5){
-		cerr << "Not enough arguments\n";
+		cerr << "Not enough arguments\n Only supplied " << argc -1
+			<< " arguments.";
 		exit(1);
 	}
 
@@ -47,7 +48,7 @@ int main(int argc, char* argv[]){
 	}
 
 	//	Output to file
-	output_speed_to_file("benchmarks_results.txt", results, argv[2], argv[3], argv[4], argv[5]);
+	output_speed_to_file("benchmarks_results.txt", results, argv[2], argv[3], argv[4]);
 }
 
 string get_file_contents(const char* file_name){
