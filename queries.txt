@@ -1,0 +1,6 @@
+Q1|Select event_id, product_instance_id, entitlement_tag, service_id, token_id, count(event_id) as total_hours, min (device_time) AS start_time, max(device_time) AS end_time FROM speed GROUP BY event_id, product_instance_id, entitlement_tag, service_id, token_id
+Q2|Select count(firewall) count_firewall from firewall GROUP BY service_id, product_instance_id
+Q3|SELECT sum(vpn_mbs) sum_vpn_mbs FROM vpn GROUP BY service_id, product_instance_id
+Q4|SELECT service_id, entitlement_tag, SUM(total_hours) sum_total_hours FROM (Select event_id, product_instance_id, entitlement_tag, service_id, token_id, count(event_id) as total_hours, min(device_time) AS start_time, max(device_time) AS end_time FROM intermediate_speed GROUP BY event_id, product_instance_id, entitlement_tag, service_id, token_id) A GROUP BY service_id, entitlement_tag
+Q5|Select service_id, sum(count_firewall) sum_count_firewall FROM (Select count(firewall) count_firewall from firewall GROUP BY service_id, product_instance_id) B GROUP BY service_id
+Q6|SELECT service_id, sum(sum_vpn_mbs) sum_vpn_mbs FROM (SELECT sum(vpn_mbs) sum_vpn_mbs FROM intermediate_vpn GROUP BY service_id, product_instance_id) C GROUP BY service_id;
