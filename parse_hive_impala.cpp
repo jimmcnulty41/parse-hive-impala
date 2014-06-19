@@ -104,7 +104,7 @@ void output_speed_to_file(const string& file_name, const string& speed,
 		cerr << "Error with out_file\n";
 		exit(2);
 	}
-	string result_size;
+	string result_size, benchmark_size;
 	cin >> benchmark_size;
 	cin >> result_size;
 	out_file << speed << "," << query_engine << "," << benchmark_size << ","
