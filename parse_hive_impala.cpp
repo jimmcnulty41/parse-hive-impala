@@ -3,8 +3,11 @@
 //  Takes command line arguments in the following order:
 //		<input-file-name>
 //		<query engine (hive, impala, shark, etc.)>
-//		<benchmark size>
 //		<query_id>
+//
+// Input from file with following format must be piped in as input
+//		<table size>
+//		<result size> <filler>
 
 #include <cstdlib>
 #include <iostream>
@@ -20,13 +23,16 @@ string getLastLine(ifstream& in);
 string get_speed_hive(const string & file_contents);
 string get_speed_impala(const string & file_contents);
 void output_speed_to_file(const string& file_name, const string& speed,
-	const string &query_engine, const string &benchmark_size,
-	const string &query_id);
+	const string &query_engine, const string &query_id);
+	
+const int num_args = 4;
 
 int main(int argc, char* argv[]){
-	if (argc < 5){
+	if (argc < num_args){
 		cerr << "Not enough arguments\n Only supplied " << argc -1
-			<< " arguments.";
+			<< " arguments.\nIn reverse order:\n";
+		for (int i = argc - 1; argc > 0; --i)
+			cerr << "\t" << argv[i] << "\n";
 		exit(1);
 	}
 
@@ -91,8 +97,7 @@ string get_speed_impala(const string &file_contents){
 }
 
 void output_speed_to_file(const string& file_name, const string& speed, 
-						  const string &query_engine, const string &benchmark_size, 
-						  const string &query_id){
+			const string &query_engine, const string &query_id){
 	ofstream out_file;
 	out_file.open(file_name.c_str(), ios::app);
 	if (!out_file){
@@ -100,6 +105,7 @@ void output_speed_to_file(const string& file_name, const string& speed,
 		exit(2);
 	}
 	string result_size;
+	cin >> benchmark_size;
 	cin >> result_size;
 	out_file << speed << "," << query_engine << "," << benchmark_size << ","
 		<< query_id << "," << result_size << endl;
