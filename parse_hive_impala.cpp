@@ -22,7 +22,7 @@ string get_file_contents(const char* file_name);
 string getLastLine(ifstream& in);
 string get_speed_hive(const string & file_contents);
 string get_speed_impala(const string & file_contents);
-void output_speed_to_file(const string& file_name, const string& speed,
+void output_speed_to_file(const string& output_file_name, const string& speed,
 	const string &query_engine, const string &query_id);
 	
 const int num_args = 4;
@@ -54,7 +54,7 @@ int main(int argc, char* argv[]){
 	}
 
 	//	Output to file
-	output_speed_to_file("benchmarks_results.txt", results, argv[2], argv[3], argv[4]);
+	output_speed_to_file("benchmarks_results.txt", results, argv[2], argv[3]);
 }
 
 string get_file_contents(const char* file_name){
