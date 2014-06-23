@@ -92,18 +92,22 @@ string get_file_contents(const char* file_name){
 }
 
 string get_table_size(const char* file_name){
-	
 	ifstream input;
 	input.open(file_name);
 	if (!input.good()){
 		cerr << "Input file cannot be read\n";
 		exit(2);
 	}
-	string results1;
+	double results1;
 	input >> results1;
 	string results2;
 	input >> results2;
-	return results1 + results2;
+	if (results2 == "G") results1 *= 1000000;
+	else if (results2 == "M") results1 *= 1000;
+	ostringstream os;
+	os << results1;
+	return os.str();
+	
 }
 
 string getLastLine(ifstream& in)
@@ -147,7 +151,7 @@ void output_speed_to_file(const string& file_name, const string& speed,
 	string result_size, benchmark_size;
 	cin >> benchmark_size;
 	cin >> result_size;
-	out_file << table_size << speed << "," << query_engine << "," << benchmark_size << ","
+	out_file << table_size << "," << speed << "," << query_engine << "," << benchmark_size << ","
 		<< query_id << "," << result_size << endl;
 	out_file.close();
 }
