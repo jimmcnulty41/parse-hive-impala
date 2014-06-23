@@ -21,6 +21,7 @@
 using namespace std;
 
 string get_file_contents(const char* file_name);
+string get_file_contents_full(const char* file_name);
 string getLastLine(ifstream& in);
 string get_speed_hive(const string & file_contents);
 string get_speed_impala(const string & file_contents);
@@ -68,7 +69,7 @@ int main(int argc, char* argv[]){
 	}
 	
 	//	Get the size from the file specified
-	last_line = get_file_contents(argv[4]);
+	last_line = get_file_contents_full(argv[4]);
 	string table_size = get_size(last_line);
 
 	//	Output to file
@@ -84,6 +85,19 @@ string get_file_contents(const char* file_name){
 	}
 	return getLastLine(in_file);
 	
+}
+
+string get_file_contents_full(const char* file_name){
+	
+	ifstream in_file;
+	in_file.open(file_name);
+	if (!in_file.good()){
+		cerr << "Input file cannot be read\n";
+		exit(2);
+	}
+	string results;
+	getLine(in_file, results);
+	return results;
 }
 
 string getLastLine(ifstream& in)
