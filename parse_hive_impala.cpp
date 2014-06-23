@@ -72,7 +72,7 @@ int main(int argc, char* argv[]){
 		exit(1);
 	}
 	
-	cerr << "\nLast line from log file has been parsed\n"
+	cerr << "\nLast line from log file has been parsed\n";
 	//	Get the size from the file specified
 	string table_size = get_table_size(argv[4]);
 	cerr << "\nTable size file has been parsed into a string\n";
