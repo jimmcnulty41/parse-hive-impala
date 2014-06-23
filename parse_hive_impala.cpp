@@ -16,6 +16,7 @@
 #include <string>
 #include <sstream>
 #include <iomanip>
+#include <cstring>
 
 using namespace std;
 
@@ -30,6 +31,16 @@ void output_speed_to_file(const string& output_file_name, const string& speed,
 const int num_args = 4;
 
 int main(int argc, char* argv[]){
+	if (argc == 2){
+		if (strcmp("-h",argv[1])){
+			cout << "Takes command line arguments in the following order:"
+				<< "\t<input-file-name>"
+				<< "\t<query engine (hive, impala, shark, etc.)>" 
+				<< "\t<query_id>"
+				<< "\t<table_size>";
+		}	
+		
+	}
 	if (argc < num_args + 1){
 		cerr << "Not enough arguments\n Only supplied " << argc -1
 			<< " arguments.\nIn reverse order:\n";
