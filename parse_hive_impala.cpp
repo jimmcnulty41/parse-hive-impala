@@ -112,7 +112,7 @@ string get_size(const string &file_contents){
 }
 
 void output_speed_to_file(const string& file_name, const string& speed, 
-			const string &query_engine, const string &query_id
+			const string &query_engine, const string &query_id,
 			const string & table_size){
 	ofstream out_file;
 	out_file.open(file_name.c_str(), ios::app);
