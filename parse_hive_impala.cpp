@@ -53,8 +53,10 @@ int main(int argc, char* argv[]){
 		exit(1);
 	}
 
+	cerr << "\nArguments have been checked\n";
 	//	Get the input file contents
 	string last_line = get_file_contents(argv[1]);
+	cerr << "\nLast line has been retrieved from log file\n";
 
 	//	Pass to appropriate parser
 	string results;
@@ -69,9 +71,11 @@ int main(int argc, char* argv[]){
 		cerr << "Invalid query engine\n";
 		exit(1);
 	}
+	
+	cerr << "\nLast line from log file has been parsed\n"
 	//	Get the size from the file specified
 	string table_size = get_table_size(argv[4]);
-
+	cerr << "\nTable size file has been parsed into a string\n";
 	//	Output to file
 	output_speed_to_file("benchmarks_results.txt", results, argv[2], argv[3], table_size);
 }
