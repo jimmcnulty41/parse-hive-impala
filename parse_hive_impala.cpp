@@ -96,7 +96,7 @@ string get_file_contents_full(const char* file_name){
 		exit(2);
 	}
 	string results;
-	getLine(in_file, results);
+	getline(in_file, results);
 	return results;
 }
 
