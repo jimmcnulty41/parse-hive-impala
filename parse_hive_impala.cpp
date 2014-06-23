@@ -21,11 +21,10 @@
 using namespace std;
 
 string get_file_contents(const char* file_name);
-string get_file_contents_full(const char* file_name);
+string get_table_size(const char* file_name);
 string getLastLine(ifstream& in);
 string get_speed_hive(const string & file_contents);
 string get_speed_impala(const string & file_contents);
-string get_size(const string & file_contents);
 void output_speed_to_file(const string& output_file_name, const string& speed,
 	const string &query_engine, const string &query_id, const string & size);
 	
@@ -88,17 +87,19 @@ string get_file_contents(const char* file_name){
 	
 }
 
-string get_file_contents_full(const char* file_name){
+string get_table_size(const char* file_name){
 	
-	ifstream in_file;
-	in_file.open(file_name);
-	if (!in_file.good()){
+	ifstream input;
+	input.open(file_name);
+	if (!input.good()){
 		cerr << "Input file cannot be read\n";
 		exit(2);
 	}
-	string results;
-	getline(in_file, results);
-	return results;
+	string results1;
+	input >> results1;
+	string results2;
+	input >> results2;
+	return results1 + results2;
 }
 
 string getLastLine(ifstream& in)
@@ -129,14 +130,6 @@ string get_speed_impala(const string &file_contents){
 	return results;
 }
 
-string get_size(const string &file_contents){
-	istringstream input(file_contents);
-	string results1;
-	input >> results1;
-	string results2;
-	input >> results2;
-	return results1 + results2;
-}
 
 void output_speed_to_file(const string& file_name, const string& speed, 
 			const string &query_engine, const string &query_id,
