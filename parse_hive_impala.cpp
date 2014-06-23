@@ -102,10 +102,10 @@ string get_table_size(const char* file_name){
 	input >> results1;
 	string results2;
 	input >> results2;
-	if (results2 == "G") results1 *= 1000000;
-	else if (results2 == "M") results1 *= 1000;
+	if (results2 == "K") results1 /= 1000;
+	else if (results2 == "G") results1 *= 1000;
 	ostringstream os;
-	os << results1;
+	os << setprecision(3) << results1;
 	return os.str();
 	
 }
