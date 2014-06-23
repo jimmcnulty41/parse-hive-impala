@@ -37,7 +37,7 @@ int main(int argc, char* argv[]){
 				<< "\n\t<input-file-name>"
 				<< "\n\t<query engine (hive, impala, shark, etc.)>" 
 				<< "\n\t<query_id>"
-				<< "\n\t<table_size>";
+				<< "\n\t<table_size>"
 				<< "\n// Input from file with following format must be piped in as input"
 				<< "\n\t<table size>"
 				<< "\n\t<result size> <filler>\n";
