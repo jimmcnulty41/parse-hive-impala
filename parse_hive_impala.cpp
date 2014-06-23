@@ -67,7 +67,7 @@ int main(int argc, char* argv[]){
 		cerr << "Invalid query engine\n";
 		exit(1);
 	}
-	
+cout << "Before file_contents_full";	
 	//	Get the size from the file specified
 	last_line = get_file_contents_full(argv[4]);
 	string table_size = get_size(last_line);
