@@ -70,7 +70,7 @@ int main(int argc, char* argv[]){
 		exit(1);
 	}
 	//	Get the size from the file specified
-	string table_size = get__table_size(argv[4]);
+	string table_size = get_table_size(argv[4]);
 
 	//	Output to file
 	output_speed_to_file("benchmarks_results.txt", results, argv[2], argv[3], table_size);
