@@ -32,6 +32,7 @@ const int num_args = 4;
 
 int main(int argc, char* argv[]){
 	if (argc == 2){
+		cout << "In here";
 		if (strcmp("-h",argv[1]) == 0){
 			cout << "Takes command line arguments in the following order:"
 				<< "\t<input-file-name>"
